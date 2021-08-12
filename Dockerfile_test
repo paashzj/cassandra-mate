@@ -1,0 +1,13 @@
+FROM ttbb/cassandra:nake
+
+LABEL maintainer="shoothzj@gmail.com"
+
+COPY cassandra-mate/target/cassandra-mate-0.0.1.jar /opt/sh/cassandra/mate/cassandra-mate.jar
+
+COPY docker-build /opt/sh/cassandra/mate
+
+COPY config/cassandra-original.yaml /opt/sh/cassandra/conf/cassandra-original.yaml
+
+WORKDIR /opt/sh/cassandra
+
+CMD ["/usr/local/bin/dumb-init", "bash", "-vx","/opt/sh/cassandra/mate/scripts/start.sh"]
