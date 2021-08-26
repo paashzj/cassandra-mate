@@ -2,7 +2,7 @@
 <Configuration status="warn" monitorInterval="10">
     <Appenders>
         <RollingFile name="RollingFile" fileName="../logs/cassandra-mate.log"
-                     filePattern="../logs/cassandra-mate-%d{yyyy-MM-dd HH}.log">
+                     filePattern="../logs/cassandra-mate-%d{yyyy-MM-dd-HH}.log">
             <PatternLayout>
                 <Pattern>%d{yyyy-MM-dd,HH:mm:ss,SSSXXX}(%r):%4p%X[%t#%T]-->%m%n</Pattern>
             </PatternLayout>

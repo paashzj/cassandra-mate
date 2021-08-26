@@ -1,5 +1,6 @@
 package com.github.shoothzj.cassandra.mate.service;
 
+import com.github.shoothzj.cassandra.mate.config.CassandraConfig;
 import com.github.shoothzj.cassandra.mate.constant.PathConst;
 import com.github.shoothzj.javatool.util.Ipv4Util;
 import com.github.shoothzj.javatool.util.ShellUtil;
@@ -39,7 +40,6 @@ public class LifecycleService {
      * seed_provider
      */
     public void genConfig() throws Exception {
-        final String cassandraInterface = System.getenv("CASSANDRA_INTERFACE");
         try {
             Files.deleteIfExists(Paths.get(PathConst.CASSANDRA_CONFIG));
         } catch (IOException e) {
@@ -49,7 +49,7 @@ public class LifecycleService {
         try (FileWriter fw = new FileWriter(PathConst.CASSANDRA_CONFIG, true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
-            if (StringUtil.isEmpty(cassandraInterface)) {
+            if (StringUtil.isEmpty(CassandraConfig.cassandraInterface)) {
                 // localhost
                 out.println("listen_address: localhost");
                 out.println("seed_provider:");
@@ -57,11 +57,11 @@ public class LifecycleService {
                 out.println("      parameters:");
                 out.println("          - seeds: \"127.0.0.1:7000\"");
             } else {
-                out.println("listen_interface: " + cassandraInterface);
+                out.println("listen_interface: " + CassandraConfig.cassandraInterface);
                 out.println("seed_provider:");
                 out.println("    - class_name: org.apache.cassandra.locator.SimpleSeedProvider");
                 out.println("      parameters:");
-                final String seedIp = Ipv4Util.getIp(cassandraInterface);
+                final String seedIp = Ipv4Util.getIp(CassandraConfig.cassandraInterface);
                 out.println("          - seeds: \"" + seedIp + ":7000\"");
                 log.info("seed ip is {}", seedIp);
             }
