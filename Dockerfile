@@ -21,4 +21,4 @@ RUN rm -f /opt/sh/cassandra/conf/cassandra.yaml
 
 WORKDIR /opt/sh/cassandra
 
-CMD ["/usr/local/bin/dumb-init", "bash", "-vx","/opt/sh/cassandra/mate/scripts/start.sh"]
+CMD ["/usr/bin/dumb-init", "bash", "-vx","/opt/sh/cassandra/mate/scripts/start.sh"]
