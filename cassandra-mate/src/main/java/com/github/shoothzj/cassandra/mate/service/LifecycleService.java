@@ -2,9 +2,9 @@ package com.github.shoothzj.cassandra.mate.service;
 
 import com.github.shoothzj.cassandra.mate.config.CassandraConfig;
 import com.github.shoothzj.cassandra.mate.constant.PathConst;
-import com.github.shoothzj.javatool.util.Ipv4Util;
 import com.github.shoothzj.javatool.util.ShellUtil;
 import com.github.shoothzj.javatool.util.StringUtil;
+import com.github.shoothzj.sdk.net.Ipv4Util;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
